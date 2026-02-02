@@ -1,8 +1,9 @@
-import pygame
 import random
 from enum import Enum
 from collections import deque
 import os, sys
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+import pygame
 
 def resource_path(path):
     if hasattr(sys, "_MEIPASS"):

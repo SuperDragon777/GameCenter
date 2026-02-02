@@ -5,7 +5,11 @@ from PyQt6.QtGui import QIcon
 import os
 import sys
 
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+import pygame
+
 from snake import main as snake_main
+from tictactoe import main as tictactoe_main
 
 def resource_path(relative_path):
     if hasattr(sys, "_MEIPASS"):
@@ -38,16 +42,28 @@ class GameCenter(QMainWindow):
         welcome_label.setStyleSheet("font-size: 24px; font-weight: bold; margin: 20px;")
         layout.addWidget(welcome_label)
         
-        game_button = QPushButton("Змейка")
-        game_button.setFixedHeight(50)
-        game_button.setStyleSheet("font-size: 16px;")
-        game_button.clicked.connect(self.snake)
-        layout.addWidget(game_button)
+        snake_button = QPushButton("Змейка")
+        snake_button.setFixedHeight(50)
+        snake_button.setStyleSheet("font-size: 16px;")
+        snake_button.clicked.connect(self.snake)
         
+        tictactoe_button = QPushButton("Крестики-нолики")
+        tictactoe_button.setFixedHeight(50)
+        tictactoe_button.setStyleSheet("font-size: 16px;")
+        tictactoe_button.clicked.connect(self.tictactoe)
+        
+        layout.addWidget(snake_button)
+        layout.addWidget(tictactoe_button)
+
         layout.addStretch()
     
     def snake(self):
+        pygame.font.init()
         snake_main()
+    
+    def tictactoe(self):
+        pygame.font.init()
+        tictactoe_main()
 
 
 def main():
